@@ -65,8 +65,3 @@ python xget_option_prices.py SPX --exp-range 0:30 --plot-iv
 - If `--plot-iv` is used, the script pulls a spot price to focus the plot around the current level.
 - The output CSV includes both calls and puts with an `option_type` column.
 
-## Related scripts
-
-- `ximplied_vols.py`: compute implied vols by tenor from saved option data.
-- `xsvi.py` / `xssvi.py` / `xsabr.py`: fit SVI/SSVI/SABR smiles from CSVs.
-
