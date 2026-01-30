@@ -1,4 +1,4 @@
-# xget_option_prices.py
+## Yahoo-Option-prices
 
 Download option chains (calls + puts) from Yahoo Finance via `yfinance` and write CSVs. Supports single or multiple symbols, single expiry or all expirations, optional expiration range, and optional implied-volatility plotting.
 
@@ -67,7 +67,7 @@ Fetch multiple symbols (all expirations):
 python xget_option_prices.py SPY QQQ IWM
 ```
 
-Fetch expirations 0–30 days out and plot IV:
+Fetch expirations 0â€“30 days out and plot IV:
 ```
 python xget_option_prices.py "^SPX" --exp-range 0:30 --plot-iv
 ```
@@ -77,4 +77,5 @@ python xget_option_prices.py "^SPX" --exp-range 0:30 --plot-iv
 - Data source is Yahoo Finance via `yfinance`.
 - If `--plot-iv` is used, the script pulls a spot price to focus the plot around the current level.
 - The output CSV includes both calls and puts with an `option_type` column.
+
 
