@@ -20,7 +20,7 @@ python xget_option_prices.py SYMBOL1 SYMBOL2 ... [YYYYMMDD] [--expiry YYYYMMDD|Y
 
 - `SYMBOL`: one or more tickers. If the symbol starts with `^`, it will be stripped in output filenames and summary labels.
 - `YYYYMMDD` (optional): specific expiration date to fetch. If omitted and `--expiry` is not given, all expirations are fetched.
-- `outfile.csv` (optional): output filename for a single symbol. Ignored for multi-symbol runs.
+- `outfile.csv` (optional): output filename for a single symbol. Ignored for multi-symbol runs. If no expiry is supplied, a trailing `.csv` argument is treated as the output file for a single symbol.
 
 ### Options
 
@@ -45,6 +45,11 @@ python xget_option_prices.py SYMBOL1 SYMBOL2 ... [YYYYMMDD] [--expiry YYYYMMDD|Y
 Fetch all expirations for one symbol:
 ```
 python xget_option_prices.py "^SPX"
+```
+
+Fetch all expirations and write to a custom file:
+```
+python xget_option_prices.py "^SPX" temp_spx.csv
 ```
 
 Fetch one expiration and write to a custom file:
