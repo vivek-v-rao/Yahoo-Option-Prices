@@ -41,12 +41,12 @@ python xget_option_prices.py SYMBOL1 SYMBOL2 ... [YYYYMMDD] [--plot-iv] [--timin
 
 Fetch all expirations for one symbol:
 ```
-python xget_option_prices.py SPX
+python xget_option_prices.py ^SPX
 ```
 
 Fetch one expiration and write to a custom file:
 ```
-python xget_option_prices.py SPX 20260220 spx_20260220.csv
+python xget_option_prices.py ^SPX 20260220 spx_20260220.csv
 ```
 
 Fetch multiple symbols (all expirations):
@@ -56,7 +56,7 @@ python xget_option_prices.py SPY QQQ IWM
 
 Fetch expirations 0–30 days out and plot IV:
 ```
-python xget_option_prices.py SPX --exp-range 0:30 --plot-iv
+python xget_option_prices.py ^SPX --exp-range 0:30 --plot-iv
 ```
 
 ## Notes
@@ -64,4 +64,5 @@ python xget_option_prices.py SPX --exp-range 0:30 --plot-iv
 - Data source is Yahoo Finance via `yfinance`.
 - If `--plot-iv` is used, the script pulls a spot price to focus the plot around the current level.
 - The output CSV includes both calls and puts with an `option_type` column.
+
 
