@@ -28,7 +28,7 @@ python xget_option_prices.py SYMBOL1 SYMBOL2 ... [YYYYMMDD] [--expiry YYYYMMDD|Y
 - `--expiry YYYYMMDD|YYYYMMDD:YYYYMMDD`: select a single expiration or a date range.
 - `--exp-range N:M`: filter expirations by days from today (inclusive). Empty side means open-ended (e.g., `:30` or `7:`).
   If `YYYYMMDD`, `--expiry`, and/or `--exp-range` are provided, expirations are the union.
-- `--plot-iv`: plot implied volatility vs. strike for the fetched chain.
+- `--plot-iv`: plot implied volatility vs. strike for the fetched chain. Beware that the implied vols are those reported by Yahoo Finance, and I think they are often wrong.
 - `--timing`: print timing summary at the end.
 
 ## Output
@@ -77,5 +77,6 @@ python xget_option_prices.py "^SPX" --exp-range 0:30 --plot-iv
 - Data source is Yahoo Finance via `yfinance`.
 - If `--plot-iv` is used, the script pulls a spot price to focus the plot around the current level.
 - The output CSV includes both calls and puts with an `option_type` column.
+
 
 
