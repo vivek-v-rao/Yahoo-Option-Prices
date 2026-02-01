@@ -113,9 +113,8 @@ def main(argv):
     if not symbols:
         print("missing symbol(s)")
         sys.exit(1)
-    if outfile is not None and len(symbols) > 1:
-        print("outfile ignored when multiple symbols are provided")
-        outfile = None
+    multi_out = outfile is not None and len(symbols) > 1
+    combined_frames = []
 
     for symbol in symbols:
         display_symbol = symbol.lstrip("^")
@@ -149,8 +148,13 @@ def main(argv):
             df, expiry_label = fetch_option_chain(symbol, expiry, exp_range)
         elapsed = perf_counter() - start
         timings[f"fetched option data {display_symbol}"] = time.time()
-        df.to_csv(out, index=False)
-        print(f"wrote {out}")
+        if multi_out:
+            df = df.copy()
+            df["symbol"] = display_symbol
+            combined_frames.append(df)
+        else:
+            df.to_csv(out, index=False)
+            print(f"wrote {out}")
         print(df.head())  # quick sanity check
         try:
             summary_df = summarize_option_chain(df, expiry)
@@ -160,8 +164,13 @@ def main(argv):
             print(f"summary for {display_symbol}")
             print(summary_df.to_string())
         timings[f"summarized option data {display_symbol}"] = time.time()
-        if plot_iv:
+        if plot_iv and not multi_out:
             plot_iv_vs_strike(df, display_symbol, expiry_label)
+
+    if multi_out:
+        combined = pd.concat(combined_frames, ignore_index=True) if combined_frames else pd.DataFrame()
+        combined.to_csv(outfile, index=False)
+        print(f"wrote {outfile}")
 
 
 if __name__ == "__main__":
