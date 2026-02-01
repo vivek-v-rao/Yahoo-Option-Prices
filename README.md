@@ -49,7 +49,7 @@ python xget_option_prices.py "^SPX"
 
 Fetch all expirations and write to a custom file:
 ```
-python xget_option_prices.py "^SPX" temp_spx.csv
+python xget_option_prices.py "^SPX" spx.csv
 ```
 
 Fetch one expiration and write to a custom file:
@@ -77,6 +77,7 @@ python xget_option_prices.py "^SPX" --exp-range 0:30 --plot-iv
 - Data source is Yahoo Finance via `yfinance`.
 - If `--plot-iv` is used, the script pulls a spot price to focus the plot around the current level.
 - The output CSV includes both calls and puts with an `option_type` column.
+
 
 
 
